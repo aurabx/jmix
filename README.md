@@ -46,6 +46,7 @@ This repository contains:
 | `/tools/`                | Validation utilities (optional)              |
 | `LICENSE.md`             | Licence terms for the specification          |
 | `README.md`              | This file                                    |
+| `security.md`            | Outlines the security model and how to secure an envelope |
 
 ---
 
