@@ -53,11 +53,9 @@ This repository contains:
 
 To start using JMIX:
 
-1. Read the [Introduction](./spec/introduction.md)
-2. Explore the [Envelope Structure](./spec/envelope.md)
-3. Review the [Manifest Format](./spec/manifest.md)
-4. See [Transport Guidance](./spec/transport.md)
-5. Browse [Examples](./examples/)
+1. Explore the [Envelope Structure](./spec/envelope.md)
+2. Review the [Manifest Format](./spec/envelope//manifest.md)
+3. Browse [Examples](./examples/)
 
 If you're implementing support for JMIX in your application, start with the `manifest.json` schema and sample envelopes.
 
