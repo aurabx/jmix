@@ -40,9 +40,9 @@ This repository contains:
 
 | File / Folder            | Description                                  |
 |--------------------------|----------------------------------------------|
-| `/spec/`                 | Markdown source files for each section       |
-| `/schemas/`              | JSON Schema definitions (WIP)                |
-| `/examples/`             | Sample `manifest.json`, audit logs, payloads |
+| `[/spec/](./spec/envelope.md)`                 | Markdown source files for each section       |
+| `/schemas/`              | JSON Schema definitions (Coming)                |
+| `[/examples/](./examples/)`             | Sample `manifest.json`, audit logs, payloads |
 | `/tools/`                | Validation utilities (optional)              |
 | `LICENSE.md`             | Licence terms for the specification          |
 | `README.md`              | This file                                    |
