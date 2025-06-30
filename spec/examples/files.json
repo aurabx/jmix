@@ -1,0 +1,22 @@
+[
+  {
+    "file": "files/report.pdf",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size_bytes": 15832
+  },
+  {
+    "file": "files/image1.jpg",
+    "hash": "5d41402abc4b2a76b9719d911017c592",
+    "size_bytes": 84234
+  },
+  {
+    "file": "files/head_ct.nii.gz",
+    "hash": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3",
+    "size_bytes": 2097152
+  },
+  {
+    "file": "studies/study1/additional_notes.txt",
+    "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "size_bytes": 322
+  }
+]

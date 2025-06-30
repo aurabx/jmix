@@ -1,0 +1,33 @@
+{
+  "audit": [
+    {
+      "event": "created",
+      "by": {
+        "id": "org:clinic-a",
+        "name": "Radiology Clinic A"
+      },
+      "timestamp": "2025-06-01T10:00:00Z"
+    },
+    {
+      "event": "sent",
+      "to": {
+        "id": "org:runbeam.edge.01",
+        "name": "Runbeam Relay Node"
+      },
+      "timestamp": "2025-06-01T10:02:00Z",
+      "assertion": {
+        "signing_key": {
+          "alg": "Ed25519",
+          "public_key": "<base64>",
+          "fingerprint": "SHA256:abcd..."
+        },
+        "signature": "<base64sig>",
+        "signed_fields": [
+          "event",
+          "to.id",
+          "timestamp"
+        ]
+      }
+    }
+  ]
+}
