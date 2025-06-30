@@ -40,9 +40,9 @@ This repository contains:
 
 | File / Folder            | Description                                  |
 |--------------------------|----------------------------------------------|
-| `[/spec/](./spec/envelope.md)`                 | Markdown source files for each section       |
-| `/schemas/`              | JSON Schema definitions (Coming)                |
-| `[/examples/](./examples/)`             | Sample `manifest.json`, audit logs, payloads |
+| `/spec/`                 | Markdown source files for each section       |
+| `/schemas/`              | JSON Schema definitions (WIP)                |
+| `/examples/`             | Sample `manifest.json`, audit logs, payloads |
 | `/tools/`                | Validation utilities (optional)              |
 | `LICENSE.md`             | Licence terms for the specification          |
 | `README.md`              | This file                                    |
@@ -55,7 +55,7 @@ To start using JMIX:
 
 1. Explore the [Envelope Structure](./spec/envelope.md)
 2. Review the [Manifest Format](./spec/envelope//manifest.md)
-3. Browse [Examples](./examples/)
+. Browse [Examples](./examples/)
 
 If you're implementing support for JMIX in your application, start with the `manifest.json` schema and sample envelopes.
 
