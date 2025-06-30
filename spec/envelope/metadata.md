@@ -1,12 +1,8 @@
-# The Payload
-
-The payload contains all the actual medical data being transported in this envelope. The payload can be sent “as is”, especially if the connection is internal or via some other secure channel, however it is designed to be sent encrypted. When encrypted, the corresponding `encryption` block should be present in the manifest.
-
-## The Metadata File
+# The Metadata File
 
 This JSON file captures high-level metadata for routing, indexing, and search.
 
-### Example
+## Example
 
 ```
 {
@@ -63,7 +59,7 @@ This JSON file captures high-level metadata for routing, indexing, and search.
 
 The specification includes a number of fields where all elements are optional. If a field is provided with no elements, then it should be ignored by the handling system.
 
-### Properties
+## Properties
 
 | Name       | Flags | Cardinality | Notes                                                                                                                                 |
 |------------|-------|--------------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -79,7 +75,7 @@ The specification includes a number of fields where all elements are optional. I
 - R: Required  
 - E: Element  
 
-#### patient properties
+### patient properties
 
 | Name         | Flags | Cardinality | Notes                                                                                                                                                                   |
 |--------------|-------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -97,7 +93,7 @@ The specification includes a number of fields where all elements are optional. I
 - E: Element  
 - L: List  
 
-#### identifier properties
+### identifier properties
 
 | Name   | Flags | Cardinality | Notes                                                                                                                                        |
 |--------|-------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -109,7 +105,7 @@ The specification includes a number of fields where all elements are optional. I
 - S: String  
 - R: Required  
 
-#### verification properties
+### verification properties
 
 | Name        | Flags | Cardinality | Notes                                                             |
 |-------------|-------|--------------|-------------------------------------------------------------------|
@@ -121,7 +117,7 @@ The specification includes a number of fields where all elements are optional. I
 - S: String  
 - R: Required  
 
-#### report properties
+### report properties
 
 This element describes the location of the report within the bundle. Reports stored in SR format are not required to be listed here.
 
@@ -133,7 +129,7 @@ This element describes the location of the report within the bundle. Reports sto
 
 - S: String  
 
-#### studies properties
+### studies properties
 
 Describes any attached studies in the dicom directory. The contents of the dicom directory is assumed to be canonical, so this information should not be used to validate that data.
 
@@ -148,7 +144,7 @@ Describes any attached studies in the dicom directory. The contents of the dicom
 - S: String  
 - L: List  
 
-#### series properties
+### series properties
 
 An optional array of series information. If provided, every series should be listed. A series may include any DICOM metadata present in the source, with the human readable name converted to snake_case.
 
@@ -167,7 +163,7 @@ The series element also supports an instance_count. Where this value differs fro
 - S: String  
 - R: Required  
 
-#### extensions properties
+### extensions properties
 
 Defines userland or other extensions to the base. There is no requirement for the receiving system to know how to process these. The following keys are reserved:
 
@@ -182,7 +178,7 @@ Defines userland or other extensions to the base. There is no requirement for th
 
 - E: Element  
 
-##### consent extension (draft)
+#### consent extension (draft)
 
 Describes whether consent is present and what scope it covers.
 
@@ -208,7 +204,7 @@ Scope supports a limited list of options that can be mapped back to other coding
 | operations     | QA or Audit     | HOPERAT           |
 | patient        | Patient Access  | PATRQT            |
 
-##### deid extension
+#### deid extension
 
 Supports a single optional key, keys, identifying which elements have been de-identified or redacted.
 
