@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurabox.cloud/jmix/schemas/audit.schema.json",
+  "title": "JMIX audit.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "audit": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/auditEntry"}
+    }
+  },
+  "required": ["audit"],
+  "$defs": {
+    "entityRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"}
+      },
+      "required": ["id"]
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signing_key": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "alg": {"type": "string", "enum": ["Ed25519"]},
+            "public_key": {"type": "string"},
+            "fingerprint": {"type": "string", "pattern": "^SHA256:[A-Fa-f0-9]+$"}
+          },
+          "required": ["alg", "public_key", "fingerprint"]
+        },
+        "signed_fields": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "signature": {"type": "string"}
+      },
+      "required": ["signing_key", "signed_fields", "signature"]
+    },
+    "auditEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "event": {"type": "string"},
+        "by": {"$ref": "#/$defs/entityRef"},
+        "to": {"$ref": "#/$defs/entityRef"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "assertion": {"$ref": "#/$defs/assertion"}
+      },
+      "required": ["event", "by", "timestamp"]
+    }
+  }
+}

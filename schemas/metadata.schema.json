@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurabox.cloud/jmix/schemas/metadata.schema.json",
+  "title": "JMIX metadata.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {"type": "string"},
+    "id": {"type": "string", "format": "uuid"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "patient": {"$ref": "#/$defs/patient"},
+    "report": {"$ref": "#/$defs/report"},
+    "studies": {"$ref": "#/$defs/studies"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "required": ["version", "id", "timestamp", "patient"],
+  "$defs": {
+    "humanName": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "family": {"type": "string"},
+        "given": {"type": "array", "items": {"type": "string"}},
+        "prefix": {"type": "string"},
+        "suffix": {"type": "string"},
+        "text": {"type": "string"}
+      }
+    },
+    "identifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "system": {"type": "string"},
+        "value": {"type": "string"}
+      },
+      "required": ["system", "value"]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "verified_by": {"type": "string"},
+        "verified_on": {"type": "string", "format": "date"}
+      }
+    },
+    "patient": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"$ref": "#/$defs/humanName"},
+        "dob": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "sex": {"type": "string", "enum": ["M", "F", "O"]},
+        "identifiers": {"type": "array", "items": {"$ref": "#/$defs/identifier"}},
+        "verification": {"$ref": "#/$defs/verification"}
+      },
+      "required": ["id"]
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {"type": "string"}
+      }
+    },
+    "series": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "series_uid": {"type": "string"},
+        "modality": {"type": "string"},
+        "body_part": {"type": "string"},
+        "instance_count": {"type": "integer", "minimum": 0}
+      },
+      "required": ["series_uid", "modality"]
+    },
+    "studies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "study_description": {"type": "string"},
+        "study_uid": {"type": "string"},
+        "series": {"type": "array", "items": {"$ref": "#/$defs/series"}}
+      }
+    },
+    "consentExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {"type": "string", "enum": ["granted", "denied", "unknown"]},
+        "scope": {"type": "array", "items": {"type": "string", "enum": ["treatment", "research", "emergency", "operations", "patient"]}},
+        "method": {"type": "string"},
+        "signed_on": {"type": "string", "format": "date"}
+      },
+      "required": ["status"]
+    },
+    "deidExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "keys": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "custom_tags": {"type": "array", "items": {"type": "string"}},
+        "consent": {"$ref": "#/$defs/consentExtension"},
+        "deid": {"$ref": "#/$defs/deidExtension"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurabox.cloud/jmix/schemas/manifest.schema.json",
+  "title": "JMIX manifest.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {"type": "string"},
+    "id": {"type": "string", "format": "uuid"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "sender": {"$ref": "#/$defs/entity"},
+    "requester": {"$ref": "#/$defs/entity"},
+    "receiver": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entity"},
+      "minItems": 1
+    },
+    "security": {"$ref": "#/$defs/security"},
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "custom_tags": {"type": "array", "items": {"type": "string"}},
+        "consent": {"$ref": "#/$defs/consentExtension"},
+        "deid": {"$ref": "#/$defs/deidExtension"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": ["version", "id", "timestamp", "sender", "receiver"],
+  "$defs": {
+    "contactPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "system": {"type": "string"},
+        "value": {"type": "string"}
+      },
+      "required": ["system", "value"]
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signing_key": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "alg": {"type": "string", "enum": ["Ed25519"]},
+            "public_key": {"type": "string"},
+            "fingerprint": {"type": "string", "pattern": "^SHA256:[A-Fa-f0-9]+$"}
+          },
+          "required": ["alg", "public_key", "fingerprint"]
+        },
+        "key_reference": {"type": "string"},
+        "signed_fields": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "signature": {"type": "string"},
+        "expires_at": {"type": "string", "format": "date-time"},
+        "directory_attestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "provider": {"type": "string"},
+            "attestation_signature": {"type": "string"},
+            "attestation_timestamp": {"type": "string", "format": "date-time"},
+            "attestation_public_key": {"type": "string"}
+          },
+          "required": ["provider", "attestation_signature", "attestation_timestamp", "attestation_public_key"]
+        }
+      },
+      "required": ["signing_key", "signed_fields", "signature"]
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "id": {"type": "string"},
+        "contact": {
+          "oneOf": [
+            {"type": "string"},
+            {"$ref": "#/$defs/contactPoint"}
+          ]
+        },
+        "assertion": {"$ref": "#/$defs/assertion"}
+      },
+      "required": ["id"]
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "classification": {"type": "string", "enum": ["confidential", "sensitive", "de-identified"]},
+        "payload_hash": {"type": "string", "pattern": "^sha256:[A-Fa-f0-9]+$"},
+        "jws": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "jws_file": {"type": "string"}
+          },
+          "required": ["jws_file"]
+        },
+        "signature": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "alg": {"type": "string"},
+            "sig": {"type": "string"},
+            "hash": {"type": "string"}
+          },
+          "required": ["alg", "sig"]
+        },
+        "encryption": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {"type": "string", "const": "AES-256-GCM"},
+            "ephemeral_public_key": {"type": "string"},
+            "iv": {"type": "string"},
+            "auth_tag": {"type": "string"}
+          },
+          "required": ["algorithm", "ephemeral_public_key", "iv", "auth_tag"]
+        }
+      }
+    },
+    "consentExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {"type": "string", "enum": ["granted", "denied", "unknown"]},
+        "scope": {"type": "array", "items": {"type": "string", "enum": ["treatment", "research", "emergency", "operations", "patient"]}},
+        "method": {"type": "string"},
+        "signed_on": {"type": "string", "format": "date"}
+      },
+      "required": ["status"]
+    },
+    "deidExtension": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "keys": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
