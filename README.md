@@ -36,16 +36,16 @@ JMIX makes this possible by defining a portable envelope with well-structured me
 
 This repository contains:
 
-|| File / Folder            | Description                                           |
-||--------------------------|-------------------------------------------------------|
-|| `/spec/`                 | Markdown source files for each section                |
-|| `/schemas/`              | JSON Schema definitions (Draft 2020-12)               |
-|| `/examples/`             | Sample `manifest.json`, audit logs, payloads          |
-|| `package.json`           | AJV-based validation scripts                          |
-|| `Makefile`               | Convenience targets for install and validation        |
-|| `licence.md`             | Licence terms for the specification                   |
-|| `README.md`              | This file                                             |
-|| `security.md`            | Outlines the security model and how to secure an envelope |
+| File / Folder   | Description                                           |
+|-----------------|-------------------------------------------------------|
+| `/spec/`        | Markdown source files for each section                |
+| `/schemas/`     | JSON Schema definitions (Draft 2020-12)               |
+| `/examples/`    | Sample `manifest.json`, audit logs, payloads          |
+| `package.json`  | AJV-based validation scripts                          |
+| `Makefile`      | Convenience targets for install and validation        |
+| `licence.md`    | Licence terms for the specification                   |
+| `README.md`     | This file                                             |
+| `security.md`   | Outlines the security model and how to secure an envelope |
 
 ---
 
