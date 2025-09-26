@@ -37,15 +37,16 @@ JMIX makes this possible by defining a portable envelope with well-structured me
 
 This repository contains:
 
-| File / Folder            | Description                                  |
-|--------------------------|----------------------------------------------|
-| `/spec/`                 | Markdown source files for each section       |
-| `/schemas/`              | JSON Schema definitions (WIP)                |
-| `/examples/`             | Sample `manifest.json`, audit logs, payloads |
-| `/tools/`                | Validation utilities (optional)              |
-| `LICENSE.md`             | Licence terms for the specification          |
-| `README.md`              | This file                                    |
-| `security.md`            | Outlines the security model and how to secure an envelope |
+|| File / Folder            | Description                                           |
+||--------------------------|-------------------------------------------------------|
+|| `/spec/`                 | Markdown source files for each section                |
+|| `/schemas/`              | JSON Schema definitions (Draft 2020-12)               |
+|| `/examples/`             | Sample `manifest.json`, audit logs, payloads          |
+|| `package.json`           | AJV-based validation scripts                          |
+|| `Makefile`               | Convenience targets for install and validation        |
+|| `licence.md`             | Licence terms for the specification                   |
+|| `README.md`              | This file                                             |
+|| `security.md`            | Outlines the security model and how to secure an envelope |
 
 ---
 
@@ -54,10 +55,41 @@ This repository contains:
 To start using JMIX:
 
 1. Explore the [Envelope Structure](./spec/envelope.md)
-2. Review the [Manifest Format](./spec/envelope//manifest.md)
-. Browse [Examples](./examples/)
+2. Review the [Manifest Format](./spec/envelope/manifest.md)
+3. Browse [Examples](./examples/)
 
 If you're implementing support for JMIX in your application, start with the `manifest.json` schema and sample envelopes.
+
+## Schemas and Validation
+
+The JMIX JSON Schemas live in `schemas/` and target JSON Schema Draft 2020-12. Validation is wired up using AJV.
+
+Validate all examples:
+
+```sh
+npm install
+npm run validate
+```
+
+Or with Make:
+
+```sh
+make install
+make validate
+```
+
+Validate a single example:
+
+```sh
+npm run validate:manifest
+npm run validate:metadata
+npm run validate:files
+npm run validate:audit
+```
+
+Notes:
+- Formats like `uuid` and `date-time` are supported via ajv-formats.
+- Schemas validate the JSON structure; they do not enforce the filesystem layout (e.g., existence of `payload/` directories). A composed top-level envelope schema may be added in future to describe directory-level constraints.
 
 ---
 
