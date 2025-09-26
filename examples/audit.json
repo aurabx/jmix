@@ -10,6 +10,10 @@
     },
     {
       "event": "sent",
+      "by": {
+        "id": "org:clinic-a",
+        "name": "Radiology Clinic A"
+      },
       "to": {
         "id": "org:runbeam.edge.01",
         "name": "Runbeam Relay Node"
@@ -19,7 +23,7 @@
         "signing_key": {
           "alg": "Ed25519",
           "public_key": "<base64>",
-          "fingerprint": "SHA256:abcd..."
+          "fingerprint": "SHA256:abcd1234"
         },
         "signature": "<base64sig>",
         "signed_fields": [

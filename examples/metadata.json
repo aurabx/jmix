@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "id": "6f57f5fa-1cd1-45be-a5c3-fb209be1e0ed",
+  "timestamp": "2025-05-24T06:14:00Z",
+  "patient": {
+    "id": "urn:uuid:a3e9be77-45b0-4eeb-a3db-9182e6b7ea2f",
+    "name": {
+      "family": "Doe",
+      "given": ["Jane"],
+      "text": "Jane Doe"
+    },
+    "dob": "1975-02-14",
+    "sex": "F",
+    "identifiers": [
+      {
+        "system": "http://ns.electronichealth.net.au/id/ihi/1.0",
+        "value": "8003608166690503"
+      },
+      {
+        "system": "urn:oid:1.2.36.146.595.217.0.1",
+        "value": "MRN123456"
+      }
+    ],
+    "verification": {
+      "verified_by": "myhealthid.au",
+      "verified_on": "2025-05-22"
+    }
+  },
+  "report": {
+    "file": "files/report.pdf"
+  },
+  "studies": {
+    "study_description": "CT Chest, Abdomen & Pelvis",
+    "study_uid": "1.2.840.113619.2.312.4120.7934893.202505221200",
+    "series": [
+      {
+        "series_uid": "1.2.3.4.5.6.789",
+        "body_part": "Chest",
+        "modality": "CT",
+        "instance_count": 120
+      }
+    ]
+  },
+  "extensions": {}
+}

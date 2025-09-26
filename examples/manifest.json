@@ -10,7 +10,7 @@
          "signing_key":{
             "alg":"Ed25519",
             "public_key":"<base64>",
-            "fingerprint":"SHA256:<hex>"
+            "fingerprint":"SHA256:4f06faee"
          },
          "key_reference":"aurabox://org/clinic-a#key-ed25519",
          "signed_fields":[
@@ -37,7 +37,7 @@
          "signing_key":{
             "alg":"Ed25519",
             "public_key":"<base64>",
-            "fingerprint":"SHA256:<hex>"
+          "fingerprint":"SHA256:4f06faee"
          },
          "key_reference":"aurabox://org/clinic-b#key-ed25519",
          "signed_fields":[
@@ -67,7 +67,7 @@
             "signing_key":{
                "alg":"Ed25519",
                "public_key":"<base64>",
-               "fingerprint":"SHA256:<hex>"
+               "fingerprint":"SHA256:4f06faee"
             },
             "key_reference":"aurabox://org/clinic-b#key-ed25519",
             "signed_fields":[
@@ -88,7 +88,7 @@
    ],
    "security":{
       "classification":"confidential",
-      "payload_hash":"sha256:instances-directory",
+      "payload_hash":"sha256:4f06faee",
       "signature":{
          "alg":"RS256",
          "sig":"MEUCIBnA...",
