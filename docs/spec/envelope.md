@@ -8,20 +8,20 @@ A **JMIX envelope** is a payload containing a metadata file and related medical 
 
 The envelope consists of the following components:
 
-- [`manifest.json`](/spec/envelope/manifest.md)
+- [`manifest.json`](envelope/manifest.md)
   Contains information about the payload and operation, but no Personally Identifiable Information (PII). This file does **not** change in transit. **(Required)**
 
 - `manifest.jws`  
   A JSON Web Signature file verifying the integrity and origin of the manifest. **(Optional)**
 
-- [`audit.json`](/spec/envelope/audit.md)  
+- [`audit.json`](envelope/audit.md)  
   Tracks events/actions performed on the envelope in transit. **(Required)**
 
 - `payload/`
   Directory containing the core data and metadata:
-  - [`metadata.json`](/spec/envelope/metadata.md) 
+  - [`metadata.json`](envelope/metadata.md) 
     Contains all relevant information about the study and operation. **(Required)**
-  - [`files.json`](/spec/envelope/files.md)
+  - [`files.json`](envelope/files.md)
     A list of all files in the payload. Required **only** when the `files/` directory is present. **(Conditional)**
   - `dicom/`  
     Contains one or more DICOM instances. **(Required for DICOM-based envelopes)**

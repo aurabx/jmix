@@ -7,9 +7,11 @@
   "devDependencies": {
     "ajv": "^8.17.1",
     "ajv-cli": "^5.0.0",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "docsify-cli": "^4.4.4"
   },
   "scripts": {
+    "docs:serve": "docsify serve docs -p 3000",
     "validate:manifest": "ajv -s schemas/manifest.schema.json -d examples/manifest.json --spec=draft2020 -c ajv-formats --strict=false",
     "validate:metadata": "ajv -s schemas/metadata.schema.json -d examples/metadata.json --spec=draft2020 -c ajv-formats --strict=false",
     "validate:files": "ajv -s schemas/files.schema.json -d examples/files.json --spec=draft2020 -c ajv-formats --strict=false",
