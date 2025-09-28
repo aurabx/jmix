@@ -13,8 +13,8 @@
     * [Audit](spec/envelope/audit.md)
 
 * Reference
-  * [JSON Schemas](../schemas/)
-  * [Examples](../examples/)
+  * [JSON Schemas](reference/schemas.md)
+  * [Examples](reference/examples.md)
 
 * Legal
-  * [License](../licence.md)
+  * [License](licence.md)

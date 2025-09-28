@@ -6,7 +6,7 @@
 
 The complete JMIX specification and documentation is available at:
 
-**[https://aurabox.github.io/jmix/](https://aurabox.github.io/jmix/)**
+**[https://aurabx.github.io/jmix/](https://aurabx.github.io/jmix/)**
 
 Alternatively, browse the documentation in the [`/docs`](./docs) directory.
 

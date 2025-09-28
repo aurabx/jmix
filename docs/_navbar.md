@@ -1,3 +1,3 @@
 * [Home](/)
-* [GitHub](https://github.com/aurabox/jmix)
-* [License](../licence.md)
+* [GitHub](https://github.com/aurabx/jmix)
+* [License](licence.md)

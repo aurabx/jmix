@@ -39,8 +39,8 @@ This documentation site contains:
 | File / Folder   | Description                                           |
 |-----------------|-------------------------------------------------------|
 | `spec/`         | Markdown source files for each section                |
-| `../schemas/`   | JSON Schema definitions (Draft 2020-12)               |
-| `../examples/`  | Sample `manifest.json`, audit logs, payloads          |
+|| [`Schemas`](reference/schemas.md)   | JSON Schema definitions (Draft 2020-12)               |
+|| [`Examples`](reference/examples.md)  | Sample `manifest.json`, audit logs, payloads          |
 | `security.md`   | Outlines the security model and how to secure an envelope |
 | `licence.md`    | Licence terms for the specification                   |
 
@@ -52,7 +52,7 @@ To start using JMIX:
 
 1. Explore the [Envelope Structure](spec/envelope.md)
 2. Review the [Manifest Format](spec/envelope/manifest.md)
-3. Browse [Examples](../examples/)
+3. Browse [Examples](reference/examples.md)
 
 If you're implementing support for JMIX in your application, start with the `manifest.json` schema and sample envelopes.
 
@@ -91,7 +91,7 @@ Notes:
 
 ## Contributing
 
-This specification is managed by Aurabox and contributions are currently **by request only**. If you have a suggestion or question, please [open an issue](https://github.com/aurabox/jmix/issues) or email us at `hello@aurabox.cloud`.
+This specification is managed by Aurabox and contributions are currently **by request only**. If you have a suggestion or question, please [open an issue](https://github.com/aurabx/jmix/issues) or email us at `hello@aurabox.cloud`.
 
 ---
 
