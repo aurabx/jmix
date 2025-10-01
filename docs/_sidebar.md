@@ -15,6 +15,7 @@
 * Reference
   * [JSON Schemas](reference/schemas.md)
   * [Examples](reference/examples.md)
+  * [Libraries](libraries.md)
 
 * Legal
   * [License](licence.md)

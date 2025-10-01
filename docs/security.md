@@ -55,7 +55,36 @@ The `encryption` block describes how the payload was encrypted:
 
 This ensures the payload cannot be decrypted or tampered with by unauthorised parties.
 
-### 3.2. Sender Assertion (Recommended)
+### 3.2 Payload Hash
+
+The payload hash calculation ensures the integrity of a JMIX payload. It works differently depending on whether the payload is encrypted or unencrypted:
+
+**Encrypted Payload**
+
+1. If the envelope is encrypted, the system looks for a single file named payload.encrypted in the envelope root.
+1. If this file is missing, an exception is raised.
+1. The SHA-256 hash of this file is calculated and returned in the form:
+
+```sha256:<hash>```
+
+**Unencrypted Payload**
+
+If the payload is not encrypted, the payload must exist as a directory. If the directory does not exist, an exception is raised.
+
+1. The system recursively walks the directory, processing each entry (file or subdirectory).
+1. For each directory: record its relative path.
+1. For each file: record its relative path, file size, and SHA-256 hash.
+1. All entries are sorted alphabetically by path for consistency.
+
+A manifest string is created by concatenating each entry’s metadata (one per line).
+
+The SHA-256 hash of the manifest is calculated and returned in the form:
+
+```sha256:<hash>```
+
+This ensures that any change in file content, size, or structure results in a different payload hash, making it a reliable integrity check.
+
+### 3.3. Sender Assertion (Recommended)
 
 The `sender_assertion` provides cryptographically verifiable information about the envelope sender:
 
@@ -69,7 +98,7 @@ This enables:
 * Defence against identity spoofing
 * Forensic proof of envelope origin
 
-### 3.3. Requester Assertion (Optional)
+### 3.4. Requester Assertion (Optional)
 
 When applicable, a `requester_assertion` allows the sender to cryptographically prove the identity of the party requesting the data, enabling policy-driven decisions on whether to fulfil the request.
 
