@@ -1,5 +1,7 @@
 # JMIX Specification
 
+**Version**: 1.1
+
 **Licence**: [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)  
 **Maintained by**: Aurabox Pty Ltd  
 **Authors**: [Christopher Skene](https://www.linkedin.com/in/xtfer/)
