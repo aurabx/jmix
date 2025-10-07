@@ -1,6 +1,6 @@
 # JMIX Specification
 
-**Version**: 1.1
+**Version**: 1.0-beta3
 
 **Licence**: [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)  
 **Maintained by**: Aurabox Pty Ltd  
