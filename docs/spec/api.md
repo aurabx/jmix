@@ -8,9 +8,6 @@ This API enables upload and retrieval of complete JMIX envelopes, with strict co
 All responses and uploads **must support** the following content types via[ HTTP content negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation):
 
 * `application/zip`
-* `application/gzip` (for `.tar.gz` archives)
-
-If no `Accept` header is provided, the default response format is `application/zip`.
 
 ---
 
@@ -23,6 +20,14 @@ If no `Accept` header is provided, the default response format is `application/z
 GET /api/jmix/{id}
 ```
 
+You may also specify the studyInstanceUid query parameter to retrieve a specific study.
+
+```
+GET /api/jmix?studyInstanceUid=xxx
+```
+
+Other query parameters may be supported by the endpoint, but are not part of the specification.
+
 **Description**: \
 Retrieve a full JMIX envelope by its envelope UUID.
 
@@ -30,20 +35,10 @@ Retrieve a full JMIX envelope by its envelope UUID.
 
 * `id`: The `id` of the JMIX envelope as specified in `manifest.json`.
 
-**Request Headers**:
-
-* `Accept`: Optional. Specifies the desired archive format. \
-  Supported values:
-    * `application/zip` → returns a `.zip` archive (default)
-    * `application/gzip` or `application/x-gtar` → returns a `.tar.gz` archive
-
 **Responses**:
 
 * `200 OK`: \
-  Returns a packaged JMIX envelope in the requested format. \
-  The response will include:
-    * `Content-Type: application/zip` or `application/gzip`
-    * `Content-Disposition: attachment; filename="{id}.zip"` or `"{id}.tar.gz"`
+  Returns a packaged JMIX envelope in the requested format (zip).
 
 The archive contains a JMIX envelope as defined in the JMIX specification
 
@@ -66,32 +61,7 @@ Retrieve a JMIX manifest by its envelope UUID. This allows retrieving the transp
 
 **Response**
 
-
-`200 OK`: Returns a .tar.gz archive of the JMIX envelope with the following structure:
-
-```
-Content-Type: application/vnd.aurabox.jmix+zip
-Content-Disposition: attachment; filename="{id}.tar.gz"
-```
-
-The ZIP must contain a JMIX envelope as defined in the JMIX specification. \
-\
-`404 Not Found`: If envelope or study is not found.
-
-### 1c. GET Envelope by Study Instance UID
-
-```
-GET /api/jmix?studyInstanceUid=xxx
-```
-
-Retrieve a full JMIX envelope by its Study Instance UID.
-
-**Query Parameters**
-
-* `studyInstanceUid`: Used to search for a JMIX envelope that includes the specified DICOM `StudyInstanceUID`. Returns the most recent if multiple exist.
-* A JMIX endpoint may allow other query parameters; however, this is not part of the specification
-
-The response is the same as 1a. Basic GET
+`200 OK`: Returns a json manifest in JSON format.
 
 ---
 ## 2. POST Envelope
@@ -110,7 +80,6 @@ Store a new JMIX envelope uploaded as a single archive file.
   Supported values:
     * `application/zip` → for `.zip` archive
     * `application/gzip` → for `.tar.gz` archive
-    * *(Optionally, you may also support a custom type such as <code>application/vnd.aurabox.jmix+zip</code>)*
 
 **Body**
 
@@ -144,3 +113,20 @@ Returned if an envelope with the same `id` already exists and cannot be overwrit
 * If `payload/files/` is present, `payload/files.json` is required
 * If encryption metadata is present in `manifest.json.security`, decrypt logic must be available
 * JWS signature is not required for acceptance, but may be stored and optionally verified
+
+---
+## 3. Prime envelope
+
+**Endpoint**: \
+```
+GET /api/jmix/prime/<studyInstanceUid>
+```
+
+**Description**: \
+Build a new JMIX envelope from a DICOM study. Returns only success or failure.
+
+**Responses**
+
+`201 Created` The study was found and was successfully primed.
+`404 Not Found` The study was not found.
+`500 Internal Server Error` An error occurred while priming the study.
